@@ -6,54 +6,70 @@ from evvanter.core.models import BaseModel
 
 class Location(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255)
+    slug = models.SlugField(_('slug'), max_length=255, blank=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = _('location')
         verbose_name_plural = _('locations')
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Category(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255)
+    slug = models.SlugField(_('slug'), max_length=255, blank=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = _('category')
         verbose_name_plural = _('categories')
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Label(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255)
+    slug = models.SlugField(_('slug'), max_length=255, blank=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = _('label')
         verbose_name_plural = _('labels')
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Brand(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255)
+    slug = models.SlugField(_('slug'), max_length=255, blank=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = _('brand')
         verbose_name_plural = _('brand')
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Document(BaseModel):
@@ -65,6 +81,9 @@ class Document(BaseModel):
         verbose_name = _('document')
         verbose_name_plural = _('documents')
 
+    def __str__(self):
+        return self.title
+
 
 class Image(BaseModel):
     inventory = models.ForeignKey('inventory.Inventory', on_delete=models.CASCADE, verbose_name=_('inventory'))
@@ -75,10 +94,13 @@ class Image(BaseModel):
         verbose_name = _('image')
         verbose_name_plural = _('images')
 
+    def __str__(self):
+        return self.title
+
 
 class Inventory(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255)
+    slug = models.SlugField(_('slug'), max_length=255, blank=True)
     description = models.TextField(_('description'), null=True, blank=True)
     cost = models.DecimalField(_('cost'), max_digits=10, decimal_places=2, null=True, blank=True)
     quantity = models.IntegerField(_('quantity'))
@@ -95,6 +117,10 @@ class Inventory(BaseModel):
         verbose_name = _('inventory')
         verbose_name_plural = _('inventories')
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
