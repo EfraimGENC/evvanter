@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     # Evvanter Apps
     'evvanter.apps.account',
+    'evvanter.apps.inventory',
 
     # Third Party
 ]
