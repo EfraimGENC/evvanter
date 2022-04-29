@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Evvanter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-23 03:30+0300\n"
+"POT-Creation-Date: 2022-04-30 00:06+0300\n"
 "PO-Revision-Date: 2022-04-23 03:30+0300\n"
 "Last-Translator: \n"
 "Language-Team: Kardesler Ceviri Hizmetleri\n"
@@ -68,7 +68,7 @@ msgstr ""
 msgid "date joined"
 msgstr ""
 
-#: evvanter/apps/account/models.py:112
+#: evvanter/apps/account/models.py:112 evvanter/apps/inventory/models.py:43
 msgid "user"
 msgstr ""
 
@@ -76,101 +76,127 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: evvanter/apps/inventory/apps.py:8 evvanter/apps/inventory/models.py:76
-#: evvanter/apps/inventory/models.py:89 evvanter/apps/inventory/models.py:117
+#: evvanter/apps/inventory/apps.py:8 evvanter/apps/inventory/models.py:106
+#: evvanter/apps/inventory/models.py:125 evvanter/apps/inventory/models.py:230
 msgid "inventory"
 msgstr "envanter"
 
-#: evvanter/apps/inventory/models.py:8 evvanter/apps/inventory/models.py:25
-#: evvanter/apps/inventory/models.py:42 evvanter/apps/inventory/models.py:59
-#: evvanter/apps/inventory/models.py:102
+#: evvanter/apps/inventory/models.py:8 evvanter/apps/inventory/models.py:51
+#: evvanter/apps/inventory/models.py:62 evvanter/apps/inventory/models.py:73
+#: evvanter/apps/inventory/models.py:91 evvanter/apps/inventory/models.py:148
 msgid "name"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:9 evvanter/apps/inventory/models.py:26
-#: evvanter/apps/inventory/models.py:43 evvanter/apps/inventory/models.py:60
-#: evvanter/apps/inventory/models.py:103
-msgid "slug"
+#: evvanter/apps/inventory/models.py:14
+msgid "owner"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:12 evvanter/apps/inventory/models.py:107
+#: evvanter/apps/inventory/models.py:21
+msgid "members"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:25 evvanter/apps/inventory/models.py:36
+#: evvanter/apps/inventory/models.py:144
 msgid "location"
 msgstr "lokasyon"
 
-#: evvanter/apps/inventory/models.py:13
+#: evvanter/apps/inventory/models.py:26
 msgid "locations"
 msgstr "lokasyonlar"
 
-#: evvanter/apps/inventory/models.py:29 evvanter/apps/inventory/models.py:108
+#: evvanter/apps/inventory/models.py:47
+msgid "can edit"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:54 evvanter/apps/inventory/models.py:172
 msgid "category"
 msgstr "kategori"
 
-#: evvanter/apps/inventory/models.py:30
+#: evvanter/apps/inventory/models.py:55
 msgid "categories"
 msgstr "kategoriler"
 
-#: evvanter/apps/inventory/models.py:46 evvanter/apps/inventory/models.py:109
-msgid "label"
-msgstr "etiket"
+#: evvanter/apps/inventory/models.py:65
+msgid "tag"
+msgstr ""
 
-#: evvanter/apps/inventory/models.py:47
-msgid "labels"
-msgstr "etiketler"
+#: evvanter/apps/inventory/models.py:66
+msgid "tags"
+msgstr ""
 
-#: evvanter/apps/inventory/models.py:63 evvanter/apps/inventory/models.py:64
-#: evvanter/apps/inventory/models.py:110
+#: evvanter/apps/inventory/models.py:76 evvanter/apps/inventory/models.py:190
 msgid "brand"
 msgstr "marka"
 
-#: evvanter/apps/inventory/models.py:77 evvanter/apps/inventory/models.py:90
+#: evvanter/apps/inventory/models.py:77 evvanter/apps/inventory/models.py:88
+#, fuzzy
+#| msgid "brand"
+msgid "brands"
+msgstr "marka"
+
+#: evvanter/apps/inventory/models.py:94 evvanter/apps/inventory/models.py:199
+msgid "model"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:95
+msgid "models"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:109 evvanter/apps/inventory/models.py:128
 msgid "title"
 msgstr "başlık"
 
-#: evvanter/apps/inventory/models.py:81
+#: evvanter/apps/inventory/models.py:113
 msgid "document"
 msgstr "doküman"
 
-#: evvanter/apps/inventory/models.py:82
+#: evvanter/apps/inventory/models.py:114
 msgid "documents"
 msgstr "dokümanlar"
 
-#: evvanter/apps/inventory/models.py:94
+#: evvanter/apps/inventory/models.py:132
 msgid "image"
 msgstr "görsel"
 
-#: evvanter/apps/inventory/models.py:95
+#: evvanter/apps/inventory/models.py:133
 msgid "images"
 msgstr "görseller"
 
-#: evvanter/apps/inventory/models.py:104
+#: evvanter/apps/inventory/models.py:153
 msgid "description"
 msgstr "açıklama"
 
-#: evvanter/apps/inventory/models.py:105
-msgid "cost"
-msgstr "maliyet"
+#: evvanter/apps/inventory/models.py:159
+#, fuzzy
+#| msgid "account"
+msgid "amount"
+msgstr "hesap"
 
-#: evvanter/apps/inventory/models.py:106
+#: evvanter/apps/inventory/models.py:166
 msgid "quantity"
 msgstr "adet"
 
-#: evvanter/apps/inventory/models.py:111
+#: evvanter/apps/inventory/models.py:181
+msgid "label"
+msgstr "etiket"
+
+#: evvanter/apps/inventory/models.py:205
 msgid "serial number"
 msgstr "seri numarası"
 
-#: evvanter/apps/inventory/models.py:112
+#: evvanter/apps/inventory/models.py:212
 msgid "date of acquisition"
 msgstr "satın alma tarihi"
 
-#: evvanter/apps/inventory/models.py:113
+#: evvanter/apps/inventory/models.py:218
 msgid "warranty start"
 msgstr "garanti başlangıcı"
 
-#: evvanter/apps/inventory/models.py:114
+#: evvanter/apps/inventory/models.py:224
 msgid "warranty finnish"
 msgstr "garanti bitişi"
 
-#: evvanter/apps/inventory/models.py:118
+#: evvanter/apps/inventory/models.py:231
 msgid "inventories"
 msgstr "envanterler"
 
@@ -194,11 +220,11 @@ msgstr "En Yeni"
 msgid "Earliest"
 msgstr "En Eski"
 
-#: evvanter/settings/base.py:132
+#: evvanter/settings/base.py:133
 msgid "Turkish"
 msgstr "Türkçe"
 
-#: evvanter/settings/base.py:133
+#: evvanter/settings/base.py:134
 msgid "English"
 msgstr "İngilizce"
 
@@ -1392,3 +1418,9 @@ msgstr ""
 #: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "labels"
+#~ msgstr "etiketler"
+
+#~ msgid "cost"
+#~ msgstr "maliyet"

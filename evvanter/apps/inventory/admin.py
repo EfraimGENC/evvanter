@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    Location, Category, Label, Brand, Document, Image, Inventory
+    Location, Category, Tag, Brand, Document, Image, Inventory
 )
 
 
@@ -14,8 +14,8 @@ class CategoryAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Label)
-class LabelAdmin(admin.ModelAdmin):
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
     pass
 
 

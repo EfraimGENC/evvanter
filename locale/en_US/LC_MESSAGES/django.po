@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-23 03:30+0300\n"
+"POT-Creation-Date: 2022-04-30 00:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: evvanter/apps/account/admin.py:17
 msgid "Personal info"
@@ -68,7 +68,7 @@ msgstr ""
 msgid "date joined"
 msgstr ""
 
-#: evvanter/apps/account/models.py:112
+#: evvanter/apps/account/models.py:112 evvanter/apps/inventory/models.py:43
 msgid "user"
 msgstr ""
 
@@ -76,101 +76,123 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: evvanter/apps/inventory/apps.py:8 evvanter/apps/inventory/models.py:76
-#: evvanter/apps/inventory/models.py:89 evvanter/apps/inventory/models.py:117
+#: evvanter/apps/inventory/apps.py:8 evvanter/apps/inventory/models.py:106
+#: evvanter/apps/inventory/models.py:125 evvanter/apps/inventory/models.py:230
 msgid "inventory"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:8 evvanter/apps/inventory/models.py:25
-#: evvanter/apps/inventory/models.py:42 evvanter/apps/inventory/models.py:59
-#: evvanter/apps/inventory/models.py:102
+#: evvanter/apps/inventory/models.py:8 evvanter/apps/inventory/models.py:51
+#: evvanter/apps/inventory/models.py:62 evvanter/apps/inventory/models.py:73
+#: evvanter/apps/inventory/models.py:91 evvanter/apps/inventory/models.py:148
 msgid "name"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:9 evvanter/apps/inventory/models.py:26
-#: evvanter/apps/inventory/models.py:43 evvanter/apps/inventory/models.py:60
-#: evvanter/apps/inventory/models.py:103
-msgid "slug"
+#: evvanter/apps/inventory/models.py:14
+msgid "owner"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:12 evvanter/apps/inventory/models.py:107
+#: evvanter/apps/inventory/models.py:21
+msgid "members"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:25 evvanter/apps/inventory/models.py:36
+#: evvanter/apps/inventory/models.py:144
 msgid "location"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:13
+#: evvanter/apps/inventory/models.py:26
 msgid "locations"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:29 evvanter/apps/inventory/models.py:108
+#: evvanter/apps/inventory/models.py:47
+msgid "can edit"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:54 evvanter/apps/inventory/models.py:172
 msgid "category"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:30
+#: evvanter/apps/inventory/models.py:55
 msgid "categories"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:46 evvanter/apps/inventory/models.py:109
-msgid "label"
+#: evvanter/apps/inventory/models.py:65
+msgid "tag"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:47
-msgid "labels"
+#: evvanter/apps/inventory/models.py:66
+msgid "tags"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:63 evvanter/apps/inventory/models.py:64
-#: evvanter/apps/inventory/models.py:110
+#: evvanter/apps/inventory/models.py:76 evvanter/apps/inventory/models.py:190
 msgid "brand"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:77 evvanter/apps/inventory/models.py:90
-msgid "title"
+#: evvanter/apps/inventory/models.py:77 evvanter/apps/inventory/models.py:88
+msgid "brands"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:81
-msgid "document"
-msgstr ""
-
-#: evvanter/apps/inventory/models.py:82
-msgid "documents"
-msgstr ""
-
-#: evvanter/apps/inventory/models.py:94
-msgid "image"
+#: evvanter/apps/inventory/models.py:94 evvanter/apps/inventory/models.py:199
+msgid "model"
 msgstr ""
 
 #: evvanter/apps/inventory/models.py:95
-msgid "images"
+msgid "models"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:104
-msgid "description"
-msgstr ""
-
-#: evvanter/apps/inventory/models.py:105
-msgid "cost"
-msgstr ""
-
-#: evvanter/apps/inventory/models.py:106
-msgid "quantity"
-msgstr ""
-
-#: evvanter/apps/inventory/models.py:111
-msgid "serial number"
-msgstr ""
-
-#: evvanter/apps/inventory/models.py:112
-msgid "date of acquisition"
+#: evvanter/apps/inventory/models.py:109 evvanter/apps/inventory/models.py:128
+msgid "title"
 msgstr ""
 
 #: evvanter/apps/inventory/models.py:113
-msgid "warranty start"
+msgid "document"
 msgstr ""
 
 #: evvanter/apps/inventory/models.py:114
+msgid "documents"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:132
+msgid "image"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:133
+msgid "images"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:153
+msgid "description"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:159
+msgid "amount"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:166
+msgid "quantity"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:181
+msgid "label"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:205
+msgid "serial number"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:212
+msgid "date of acquisition"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:218
+msgid "warranty start"
+msgstr ""
+
+#: evvanter/apps/inventory/models.py:224
 msgid "warranty finnish"
 msgstr ""
 
-#: evvanter/apps/inventory/models.py:118
+#: evvanter/apps/inventory/models.py:231
 msgid "inventories"
 msgstr ""
 
@@ -194,11 +216,11 @@ msgstr ""
 msgid "Earliest"
 msgstr ""
 
-#: evvanter/settings/base.py:132
+#: evvanter/settings/base.py:133
 msgid "Turkish"
 msgstr ""
 
-#: evvanter/settings/base.py:133
+#: evvanter/settings/base.py:134
 msgid "English"
 msgstr ""
 

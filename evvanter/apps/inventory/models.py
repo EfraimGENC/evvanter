@@ -1,12 +1,25 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.utils.text import slugify
 from evvanter.core.models import BaseModel
+from django.conf import settings
 
 
 class Location(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255, blank=True)
+
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='owned_locations',
+        verbose_name=_('owner'),
+    )
+
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        through='inventory.LocationParticipation',
+        related_name='locations',
+        verbose_name=_('members'),
+    )
 
     class Meta(BaseModel.Meta):
         verbose_name = _('location')
@@ -15,15 +28,27 @@ class Location(BaseModel):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
+
+class LocationParticipation(BaseModel):
+    location = models.ForeignKey(
+        'inventory.Location',
+        on_delete=models.CASCADE,
+        verbose_name=_('location'),
+        related_name='participants',
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('user'),
+        related_name='participants',
+    )
+
+    can_edit = models.BooleanField(_('can edit'), default=False)
 
 
 class Category(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255, blank=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = _('category')
@@ -32,48 +57,55 @@ class Category(BaseModel):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
 
-
-class Label(BaseModel):
+class Tag(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255, blank=True)
 
     class Meta(BaseModel.Meta):
-        verbose_name = _('label')
-        verbose_name_plural = _('labels')
+        verbose_name = _('tag')
+        verbose_name_plural = _('tags')
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
 
 
 class Brand(BaseModel):
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255, blank=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = _('brand')
-        verbose_name_plural = _('brand')
+        verbose_name_plural = _('brands')
 
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
+
+class Model(BaseModel):
+    brand = models.ForeignKey(
+        'inventory.Brand',
+        on_delete=models.CASCADE,
+        related_name='models',
+        verbose_name=_('brands')
+    )
+
+    name = models.CharField(_('name'), max_length=255)
+
+    class Meta(BaseModel.Meta):
+        verbose_name = _('model')
+        verbose_name_plural = _('models')
+
+    def __str__(self):
+        return self.name
 
 
 class Document(BaseModel):
-    inventory = models.ForeignKey('inventory.Inventory', on_delete=models.CASCADE, verbose_name=_('inventory'))
+    inventory = models.ForeignKey(
+        'inventory.Inventory',
+        on_delete=models.CASCADE,
+        related_name='documents',
+        verbose_name=_('inventory'),
+    )
+
     title = models.CharField(_('title'), max_length=255)
     # file = models.FileField(_('file'), upload_to='documents')
 
@@ -86,7 +118,13 @@ class Document(BaseModel):
 
 
 class Image(BaseModel):
-    inventory = models.ForeignKey('inventory.Inventory', on_delete=models.CASCADE, verbose_name=_('inventory'))
+    inventory = models.ForeignKey(
+        'inventory.Inventory',
+        on_delete=models.CASCADE,
+        related_name='images',
+        verbose_name=_('inventory')
+    )
+
     title = models.CharField(_('title'), max_length=255)
     # image =
 
@@ -99,28 +137,98 @@ class Image(BaseModel):
 
 
 class Inventory(BaseModel):
-    name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), max_length=255, blank=True)
-    description = models.TextField(_('description'), null=True, blank=True)
-    cost = models.DecimalField(_('cost'), max_digits=10, decimal_places=2, null=True, blank=True)
+    location = models.ForeignKey(
+        'inventory.Location',
+        on_delete=models.PROTECT,
+        related_name='inventories',
+        verbose_name=_('location'),
+    )
+
+    name = models.CharField(
+        _('name'),
+        max_length=255
+    )
+
+    description = models.TextField(
+        _('description'),
+        null=True,
+        blank=True
+    )
+
+    amount = models.DecimalField(
+        _('amount'),
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+
     quantity = models.IntegerField(_('quantity'))
-    location = models.ForeignKey('inventory.Location', on_delete=models.PROTECT, verbose_name=_('location'))
-    category = models.ForeignKey('inventory.Category', on_delete=models.SET_NULL, verbose_name=_('category'), null=True, blank=True)
-    label = models.ForeignKey('inventory.Label', on_delete=models.SET_NULL, verbose_name=_('label'), null=True, blank=True)
-    brand = models.ForeignKey('inventory.Brand', on_delete=models.SET_NULL, verbose_name=_('brand'), null=True, blank=True)
-    serial = models.CharField(_('serial number'), max_length=255, null=True, blank=True)
-    date_of_acquisition = models.DateField(_('date of acquisition'), null=True, blank=True)
-    warranty_start = models.DateField(_('warranty start'), null=True, blank=True)
-    warranty_finnish = models.DateField(_('warranty finnish'), null=True, blank=True)
+
+    category = models.ForeignKey(
+        'inventory.Category',
+        on_delete=models.SET_NULL,
+        related_name='inventories',
+        verbose_name=_('category'),
+        null=True,
+        blank=True
+    )
+
+    tag = models.ForeignKey(
+        'inventory.Tag',
+        on_delete=models.SET_NULL,
+        related_name='inventories',
+        verbose_name=_('label'),
+        null=True,
+        blank=True
+    )
+
+    brand = models.ForeignKey(
+        'inventory.Brand',
+        on_delete=models.SET_NULL,
+        related_name='inventories',
+        verbose_name=_('brand'),
+        null=True,
+        blank=True
+    )
+
+    model = models.ForeignKey(
+        'inventory.Model',
+        on_delete=models.SET_NULL,
+        related_name='inventories',
+        verbose_name=_('model'),
+        null=True,
+        blank=True
+    )
+
+    serial = models.CharField(
+        _('serial number'),
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
+    acquisitioned_at = models.DateField(
+        _('date of acquisition'),
+        null=True,
+        blank=True
+    )
+
+    warranty_start = models.DateField(
+        _('warranty start'),
+        null=True,
+        blank=True
+    )
+
+    warranty_end = models.DateField(
+        _('warranty finnish'),
+        null=True,
+        blank=True
+    )
 
     class Meta(BaseModel.Meta):
         verbose_name = _('inventory')
         verbose_name_plural = _('inventories')
 
     def __str__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
+        return f"{self.name} [{self.location}]"
